@@ -2,13 +2,13 @@ use gpui::{Div, Window, div, prelude::*, px, rgb, rgba};
 
 #[derive(Debug)]
 pub struct KafkaStudio {
-    selected_request: Option<usize>,
+    selected_connection: Option<usize>,
 }
 
 impl Default for KafkaStudio {
     fn default() -> Self {
         Self {
-            selected_request: None,
+            selected_connection: None,
         }
     }
 }
@@ -27,8 +27,8 @@ impl Render for KafkaStudio {
                     .flex()
                     .flex_1()
                     .text_sm()
-                    .child(project_list(cx, self.selected_request))
-                    .child(project_edit(self.selected_request)),
+                    .child(connection_list(cx, self.selected_connection))
+                    .child(connection_workspace(self.selected_connection)),
             )
     }
 }
@@ -43,7 +43,10 @@ pub(super) fn top_menu() -> Div {
         .child("Rust Kafka Studio")
 }
 
-pub(super) fn project_list(cx: &mut Context<KafkaStudio>, selected_request: Option<usize>) -> Div {
+pub(super) fn connection_list(
+    cx: &mut Context<KafkaStudio>,
+    selected_connection: Option<usize>,
+) -> Div {
     div()
         .flex()
         .flex_col()
@@ -52,11 +55,11 @@ pub(super) fn project_list(cx: &mut Context<KafkaStudio>, selected_request: Opti
         .p_6()
         .border_r_1()
         .border_color(rgb(0x475569))
-        .child("Requests")
+        .child("Connections (Demo)")
         .child(
             div()
-                .id("request-0")
-                .bg(if selected_request == Some(0) {
+                .id("Local Demo")
+                .bg(if selected_connection == Some(0) {
                     rgba(0x334155e6)
                 } else {
                     rgba(0x18181be6)
@@ -65,14 +68,14 @@ pub(super) fn project_list(cx: &mut Context<KafkaStudio>, selected_request: Opti
                 .cursor_pointer()
                 .child("GET Example")
                 .on_click(cx.listener(|this, _event, _window, cx| {
-                    this.selected_request = Some(0);
+                    this.selected_connection = Some(0);
                     cx.notify();
                 })),
         )
         .child(
             div()
-                .id("request-1")
-                .bg(if selected_request == Some(1) {
+                .id("Test Demo")
+                .bg(if selected_connection == Some(1) {
                     rgba(0x334155e6)
                 } else {
                     rgba(0x18181be6)
@@ -81,16 +84,16 @@ pub(super) fn project_list(cx: &mut Context<KafkaStudio>, selected_request: Opti
                 .cursor_pointer()
                 .child("POST Example")
                 .on_click(cx.listener(|this, _event, _window, cx| {
-                    this.selected_request = Some(1);
+                    this.selected_connection = Some(1);
                     cx.notify();
                 })),
         )
 }
 
-pub(super) fn project_edit(selected_request: Option<usize>) -> Div {
-    let text = match selected_request {
-        None => String::from("Select a request"),
-        Some(index) => format!("Editing request #{index}"),
+pub(super) fn connection_workspace(selected_connection: Option<usize>) -> Div {
+    let text = match selected_connection {
+        None => String::from("Select a connection"),
+        Some(index) => format!("Selected demo connection #{index} — not connected"),
     };
     div().flex().flex_1().p_6().child(text)
 }

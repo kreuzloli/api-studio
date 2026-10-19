@@ -1,4 +1,4 @@
-use gpui::{px, size, App, Application, Bounds, WindowBounds, WindowOptions};
+use gpui::{App, Application, Bounds, WindowBounds, WindowOptions, px, size};
 use gpui::{AppContext, WindowBackgroundAppearance};
 use kafka_studio::views;
 

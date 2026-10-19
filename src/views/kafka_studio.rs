@@ -1,4 +1,4 @@
-use gpui::{Div, Rgba, Window, div, prelude::*, px, rgb, rgba};
+use gpui::{Div, Window, div, prelude::*, px, rgb, rgba};
 
 #[derive(Debug)]
 pub struct KafkaStudio {

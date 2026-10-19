@@ -14,7 +14,7 @@ fn main() {
             },
             |_, cx| cx.new(|_| views::KafkaStudio::default()),
         )
-        .expect("Failed to open API Studio window");
+        .expect("Failed to open Kafka Studio window");
 
         cx.activate(true);
     });

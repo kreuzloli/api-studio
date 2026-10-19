@@ -25,3 +25,8 @@
 *.un~
 .swp
 .codex/
+
+
+# Added by cargo
+
+/target

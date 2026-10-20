@@ -7,3 +7,4 @@ license = "Apache-2.0"
 
 [dependencies]
 gpui = "0.2.2"
+gpui-component = "0.3.0"

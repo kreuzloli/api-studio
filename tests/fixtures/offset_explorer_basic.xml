@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections>
+  <connection
+      name="Local Demo"
+      bootstrap_servers="localhost:9092"
+      group="Local"
+      groupId="2" />
+
+  <groups>
+    <group id="1" name="Development">
+      <group id="2" name="Local" />
+    </group>
+    <group id="3" name="Empty" />
+  </groups>
+</connections>

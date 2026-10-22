@@ -1,8 +1,12 @@
+use crate::models::ConnectionFolderId;
+
 /// 本地连接配置；保存名称和地址不代表已经建立网络连接。
 #[derive(Debug)]
 pub(crate) struct Connection {
     pub(crate) name: String,
     pub(crate) bootstrap_servers: String,
+    /// 所属目录；None 表示连接直接位于根层级。
+    pub(crate) folder_id: Option<ConnectionFolderId>,
 }
 
 impl Connection {

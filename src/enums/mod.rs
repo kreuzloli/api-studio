@@ -1,1 +1,3 @@
-//! 预留的枚举模块，目前尚无实现。
+//! 项目枚举类型，通过模块导出供 crate 内使用。
+mod connection_tree_row;
+pub(crate) use connection_tree_row::ConnectionTreeRow;

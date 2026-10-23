@@ -5,6 +5,16 @@ pub(crate) struct ImportedFolder {
     pub(crate) parent_external_id: Option<String>,
 }
 
+impl ImportedFolder {
+    pub(crate) fn new() -> Self {
+        Self {
+            external_id: String::new(),
+            name: String::new(),
+            parent_external_id: None,
+        }
+    }
+}
+
 /// 当前结构解析阶段读取的连接字段，尚未转换为应用内配置。
 pub(crate) struct ImportedConnection {
     pub(crate) name: String,
@@ -14,8 +24,28 @@ pub(crate) struct ImportedConnection {
     pub(crate) folder_name_hint: Option<String>,
 }
 
+impl ImportedConnection {
+    pub(crate) fn new() -> Self {
+        Self {
+            name: String::new(),
+            bootstrap_servers: String::new(),
+            folder_external_id: None,
+            folder_name_hint: None,
+        }
+    }
+}
+
 /// 一份 XML 的结构解析结果，供后续统一校验和转换。
 pub(crate) struct ConnectionImport {
     pub(crate) folders: Vec<ImportedFolder>,
     pub(crate) connections: Vec<ImportedConnection>,
+}
+
+impl ConnectionImport {
+    pub(crate) fn new() -> Self {
+        Self {
+            folders: Vec::<ImportedFolder>::new(),
+            connections: Vec::<ImportedConnection>::new(),
+        }
+    }
 }
